@@ -5,102 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me - My GitHub Website</title>
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
         body {
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
         }
         
-        /* Header Styles */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 15px 20px;
             background-color: white;
-            color: black;
+            position: relative;
         }
-
+        
         header a {
             text-decoration: none;
             color: black;
             font-weight: bold;
         }
-
+        
         header a:hover {
             color: #A7C7E7;
         }
-
+        
         .header-links {
             display: flex;
             gap: 20px;
+            z-index: 1000;
         }
-
-        /* Content Styling */
+        
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
         .content {
             flex: 1;
-            padding: 20px;
             text-align: center;
         }
-
-        h1 {
-            color: black;
+        
+        .image-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
         }
-
-        h2 {
-            color: #A7C7E7;
-        }
-
-        p {
-            color: #333;
-            max-width: 600px;
-            margin: 0 auto 20px auto;
-            line-height: 1.6;
-        }
-
-        img {
-            border-radius: 10px;
-            max-width: 100%;
+        
+        .image-container img {
+            width: 100%;
             height: auto;
+            display: block;
         }
-
-        /* Footer Styling */
+        
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .fade-in {
+            opacity: 1;
+        }
+        
         footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px;
-            width: 100%;
-            margin-top: auto;
+            padding: 15px;
         }
-
-        footer p {
-            margin: 0;
-            font-size: 14px;
-        }
-
+        
         footer ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
         }
-
+        
         footer ul li {
             display: inline;
             margin: 0 15px;
         }
-
+        
         footer a {
             text-decoration: none;
             color: white;
             font-weight: bold;
         }
-
+        
         footer a:hover {
             color: #A7C7E7;
+        }
+        
+        @media (max-width: 768px) {
+        
+            .header-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 15px 0;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+        
+            .header-links a {
+                margin: 10px 20px;
+            }
+        
+            .header-links.active {
+                display: flex;
+            }
+        
+            .menu-toggle {
+                display: block;
+            }
+        
+            .image-container img {
+                height: 80vh;
+                object-fit: cover;
+            }
+        
+            .overlay-text {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -109,7 +151,12 @@
 <!-- Header Section -->
 <header>
     <a href="index.html" class="logo">JONATHAN HOANG NGUYEN</a>
-    <div class="header-links">
+
+    <div class="menu-toggle" id="menu-toggle">
+        ☰
+    </div>
+
+    <div class="header-links" id="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About Me</a>
         <a href="videoprojects.html">Videography</a>
