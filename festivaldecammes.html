@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Project</title>
     <style>
-        body {
+        html, body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             text-align: center;
             background-color: #f8f8f8;
+            overflow-x: hidden;
         }
 
         /* Header */
@@ -21,6 +22,7 @@
             padding: 10px 20px;
             background-color: white;
             color: black;
+            position: relative;
         }
 
         header a {
@@ -111,6 +113,50 @@
         footer a:hover {
             color: #A7C7E7;
         }
+
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        /* MOBILE STYLES */
+        @media (max-width: 768px) {
+        
+            .header-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: white;
+                padding: 15px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+        
+            .header-links a {
+                margin: 10px 0;
+            }
+        
+            .header-links.active {
+                display: flex;
+            }
+        
+            .menu-toggle {
+                display: block;
+            }
+        
+            /* Make images taller so page scrolls */
+            .image-container img {
+                height: 80vh;
+                object-fit: cover;
+            }
+        
+            .overlay-text {
+                font-size: 1.5rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -118,7 +164,12 @@
 <!-- Header -->
 <header>
     <a href="index.html" class="logo">JONATHAN HOANG NGUYEN</a>
-    <div class="header-links">
+
+    <div class="menu-toggle" id="menu-toggle">
+        ☰
+    </div>
+
+    <div class="header-links" id="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About Me</a>
         <a href="videoprojects.html">Videography</a>
@@ -146,5 +197,14 @@
     <a href="https://www.youtube.com/@jayna_win" target="_blank">YouTube</a>
 </footer>
 
+<script>
+    const toggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    toggle.addEventListener("click", function() {
+        navLinks.classList.toggle("active");
+    });
+</script>
+    
 </body>
 </html>
