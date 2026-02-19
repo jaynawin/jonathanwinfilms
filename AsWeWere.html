@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Project</title>
+
     <style>
-        body {
+        /* GLOBAL FIXES */
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             text-align: center;
             background-color: #f8f8f8;
+            overflow-x: hidden; /* eliminates horizontal movement */
         }
 
         /* Header */
@@ -21,6 +28,7 @@
             padding: 10px 20px;
             background-color: white;
             color: black;
+            position: relative;
         }
 
         header a {
@@ -30,7 +38,7 @@
         }
 
         header a:hover {
-            color: #A7C7E7; /* Light blue hover effect */
+            color: #A7C7E7;
         }
 
         .header-links {
@@ -38,27 +46,32 @@
             gap: 20px;
         }
 
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
         /* Video Container */
-     .video-container {
+        .video-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            width: 80%;
+            padding: 40px 20px;
+        }
+
+        .video-wrapper {
+            width: 100%;
             max-width: 900px;
-            height: 450px;
-            margin: 0 auto;
-            padding: 20px 0;
+            aspect-ratio: 16 / 9;
         }
 
         iframe {
-            width: 88%;
-            height: 99%;
+            width: 100%;
+            height: 100%;
             border: none;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: block;
         }
-
 
         /* Description */
         .description {
@@ -66,17 +79,17 @@
             max-width: 800px;
             margin: 0 auto;
             font-size: 18px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Photo Grid */
         .photo-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two columns */
-            grid-template-rows: repeat(3, auto); /* Three rows */
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             padding: 20px;
-            width: 80%;
+            width: 100%;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -97,28 +110,75 @@
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 40px;
         }
 
         footer a {
             text-decoration: none;
             color: white;
             font-weight: bold;
+            margin: 0 10px;
         }
 
         footer a:hover {
             color: #A7C7E7;
         }
+
+        /* MOBILE STYLES */
+        @media (max-width: 768px) {
+
+            /* Hamburger nav */
+            .header-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: white;
+                padding: 15px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+            .header-links a {
+                margin: 10px 0;
+            }
+
+            .header-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Single column images */
+            .photo-grid {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+
+            .photo-grid img {
+                height: auto;          /* remove forced crop */
+                object-fit: contain;   /* show full image */
+            }
+        }
+
     </style>
 </head>
+
 <body>
 
 <!-- Header -->
 <header>
     <a href="index.html" class="logo">JONATHAN HOANG NGUYEN</a>
-    <div class="header-links">
+
+    <div class="menu-toggle" id="menu-toggle">
+        ☰
+    </div>
+
+    <div class="header-links" id="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About Me</a>
         <a href="videoprojects.html">Videography</a>
@@ -129,31 +189,35 @@
 
 <!-- Video Section -->
 <div class="video-container">
-    <iframe src="https://player.vimeo.com/video/1063314043" frameborder="0" allowfullscreen></iframe>
+    <div class="video-wrapper">
+        <iframe src="https://player.vimeo.com/video/1063314043" allowfullscreen></iframe>
+    </div>
 </div>
 
 <!-- Description -->
 <div class="description">
     <h2>About This Project</h2>
-    <p>A young man finds meaning in the small things in life while reuniting with an old friend.</p>
+    <p>
+        A young man finds meaning in the small things in life while reuniting with an old friend.
+    </p>
 </div>
 
 <!-- Photo Grid -->
 <div class="photo-grid">
-    <img src="aswewerestill1.jpg" alt="Still from video">
-    <img src="aswewerestill2.jpg" alt="Still from video">
-    <img src="aswewerestill3.jpg" alt="Still from video">
-    <img src="aswewerestill4.jpg" alt="Still from video">
-    <img src="aswewerestill5.jpg" alt="Still from video">
-    <img src="aswewerestill6.jpg" alt="Still from video">
-    <img src="aswewerestill7.jpg" alt="Still from video">
-    <img src="aswewerestill8.jpg" alt="Still from video">
-    <img src="aswewerestill9.jpg" alt="Still from video">
-    <img src="aswewerestill10.jpg" alt="Still from video">
-    <img src="aswewerestill11.jpg" alt="Still from video">
-    <img src="aswewerestill12.jpg" alt="Still from video">
-    <img src="aswewerecoverstill.jpg" alt="Still from video">
-    <img src="aswewerestill13.jpg" alt="Still from video">
+    <img src="aswewerestill1.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill2.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill3.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill4.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill5.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill6.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill7.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill8.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill9.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill10.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill11.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill12.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerecoverstill.jpg" alt="Still from video" loading="lazy">
+    <img src="aswewerestill13.jpg" alt="Still from video" loading="lazy">
 </div>
 
 <!-- Footer -->
@@ -163,6 +227,16 @@
     <a href="https://www.linkedin.com/in/jonathannguyens/" target="_blank">LinkedIn</a> |
     <a href="https://www.youtube.com/@jayna_win" target="_blank">YouTube</a>
 </footer>
+
+<!-- Hamburger Script -->
+<script>
+    const toggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    toggle.addEventListener("click", function() {
+        navLinks.classList.toggle("active");
+    });
+</script>
 
 </body>
 </html>
