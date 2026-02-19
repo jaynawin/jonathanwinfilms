@@ -13,7 +13,7 @@
     html, body {
         margin: 0;
         padding: 0;
-        overflow-x: hidden; /* Prevent horizontal scroll */
+        overflow-x: hidden; /* Removes horizontal scroll */
         font-family: Arial, sans-serif;
         background-color: #f8f8f8;
         text-align: center;
@@ -28,7 +28,6 @@
         padding: 15px 20px;
         background-color: white;
         position: relative;
-        z-index: 1000;
     }
 
     .logo {
@@ -53,7 +52,7 @@
         color: #A7C7E7;
     }
 
-    /* Hamburger Button */
+    /* Hamburger */
     .hamburger {
         display: none;
         font-size: 28px;
@@ -70,182 +69,3 @@
         top: 60px;
         right: 20px;
         background: white;
-        width: 200px;
-        padding: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        border-radius: 8px;
-        text-align: left;
-    }
-
-    .mobile-menu a {
-        padding: 10px 0;
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
-    }
-
-    .mobile-menu a:hover {
-        color: #A7C7E7;
-    }
-
-    .mobile-menu.show {
-        display: flex;
-    }
-
-    /* ================= VIDEO ================= */
-
-    .video-container {
-        position: relative;
-        width: 90%;
-        max-width: 900px;
-        margin: 40px auto;
-        padding-bottom: 56.25%; /* 16:9 ratio */
-        height: 0;
-    }
-
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    /* ================= DESCRIPTION ================= */
-
-    .description {
-        padding: 20px;
-        max-width: 800px;
-        margin: 0 auto 40px auto;
-        font-size: 18px;
-        line-height: 1.6;
-    }
-
-    /* ================= PHOTO GRID ================= */
-
-    .photo-grid {
-        display: flex;
-        flex-direction: column; /* Single column */
-        gap: 30px;
-        width: 90%;
-        max-width: 900px;
-        margin: 0 auto 60px auto;
-    }
-
-    .photo-grid img {
-        width: 100%;
-        height: auto; /* Prevent cropping */
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .photo-grid img:hover {
-        transform: scale(1.01);
-    }
-
-    /* ================= FOOTER ================= */
-
-    footer {
-        background-color: #333;
-        color: white;
-        padding: 20px;
-        text-align: center;
-    }
-
-    footer p {
-        margin-bottom: 10px;
-    }
-
-    footer a {
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-        margin: 0 10px;
-    }
-
-    footer a:hover {
-        color: #A7C7E7;
-    }
-
-    /* ================= MOBILE ================= */
-
-    @media (max-width: 768px) {
-        .header-links {
-            display: none;
-        }
-
-        .hamburger {
-            display: block;
-        }
-    }
-
-</style>
-</head>
-
-<body>
-
-<!-- Header -->
-<header>
-    <a href="index.html" class="logo">JONATHAN HOANG NGUYEN</a>
-
-    <div class="header-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Me</a>
-        <a href="videoprojects.html">Videography</a>
-        <a href="mumbai-photo-collection.html">Mumbai Collection</a>
-        <a href="thailand-photo-collection.html">Thailand Collection</a>
-    </div>
-
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
-
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Me</a>
-        <a href="videoprojects.html">Videography</a>
-        <a href="mumbai-photo-collection.html">Mumbai Collection</a>
-        <a href="thailand-photo-collection.html">Thailand Collection</a>
-    </div>
-</header>
-
-<!-- Video Section -->
-<div class="video-container">
-    <iframe src="https://youtube.com/embed/DXhsz2jAyhw?si=zYVkWITXQyh0Hcul"
-        allowfullscreen
-        loading="lazy">
-    </iframe>
-</div>
-
-<!-- Description -->
-<div class="description">
-    <h2>About This Project</h2>
-    <p>Two high school friends reconnect four years after their graduation.</p>
-</div>
-
-<!-- Photo Grid -->
-<div class="photo-grid">
-    <img src="friyield1.jpg" alt="Still from video" loading="lazy">
-    <img src="friyield2.jpg" alt="Still from video" loading="lazy">
-    <img src="friyield3.jpg" alt="Still from video" loading="lazy">
-    <img src="friyield4.jpg" alt="Still from video" loading="lazy">
-    <img src="friyield5.jpg" alt="Still from video" loading="lazy">
-    <img src="friyield6.jpg" alt="Still from video" loading="lazy">
-</div>
-
-<!-- Footer -->
-<footer>
-    <p>Let's be friends</p>
-    <a href="https://www.instagram.com/jayna__win/" target="_blank">Instagram</a>
-    <a href="https://www.linkedin.com/in/jonathannguyens/" target="_blank">LinkedIn</a>
-    <a href="https://www.youtube.com/@jayna_win" target="_blank">YouTube</a>
-</footer>
-
-<script>
-function toggleMenu() {
-    document.getElementById("mobileMenu").classList.toggle("show");
-}
-</script>
-
-</body>
-</html>
