@@ -179,16 +179,22 @@
         }
 
         /* Mobile photo layout change ONLY */
-        .photo-grid {
-            display: flex;
-            flex-direction: column;
-            width: 90%;
-        }
+         /* Stack photo grid into 1 column */
+         .photo-grid {
+             grid-template-columns: 1fr;
+             padding: 15px;
+         }
 
-        .photo-grid img {
-            height: auto; /* Remove cropping on mobile */
-            object-fit: contain;
-        }
+         /* Remove forced crop */
+         .photo-grid img {
+             height: auto;
+             object-fit: contain;
+         }
+
+         /* Responsive video */
+         iframe {
+             width: 100%;
+         }
 
         .video-container {
             height: auto;
