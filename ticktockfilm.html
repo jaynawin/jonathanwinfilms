@@ -118,7 +118,20 @@
         
         /* MOBILE STYLES */
         @media (max-width: 768px) {
-        
+            .gallery,
+            .gallery-2x2,
+            .full-width-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Remove forced heights so images show naturally */
+            .gallery img,
+            .gallery-2x2 img,
+            .full-width-gallery img {
+                height: auto;
+                width: 100%;
+                object-fit: contain;
+            }
             .header-links {
                 display: none;
                 flex-direction: column;
