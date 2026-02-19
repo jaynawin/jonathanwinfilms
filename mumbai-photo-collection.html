@@ -148,6 +148,22 @@
         
         /* MOBILE STYLES */
         @media (max-width: 768px) {
+
+            /* Stack all galleries into one column */
+            .gallery,
+            .gallery-2x2,
+            .full-width-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Remove forced heights so images show naturally */
+            .gallery img,
+            .gallery-2x2 img,
+            .full-width-gallery img {
+                height: auto;
+                width: 100%;
+                object-fit: contain;
+            }
         
             .header-links {
                 display: none;
@@ -209,31 +225,31 @@
 
 <div class="gallery">
     <!-- Left Column (Vertical Photo) -->
-    <img src="IMG_0338.JPG" alt="Mom walking with kid in Mumbai" class="left">
+    <img src="IMG_0338.JPG" alt="Mom walking with kid in Mumbai" class="left" loading="lazy">
     
     <!-- Center Column (Horizontal Photo) -->
-    <img src="IMG_0340.JPG" alt="Kid with kite in Mumbai" class="center">
+    <img src="IMG_0340.JPG" alt="Kid with kite in Mumbai" class="center" loading="lazy">
     
     <!-- Right Column (Vertical Photo) -->
-    <img src="IMG_0342.JPG" alt="Mom holding kid in busy street in Mumbai" class="right">
+    <img src="IMG_0342.JPG" alt="Mom holding kid in busy street in Mumbai" class="right" loading="lazy">
 </div>
 
 <div class="gallery">
     <!-- Left Column (Vertical Photo) -->
-    <img src="mumbaiphoto1.JPG" alt="Officer taking photo in Mumbai" class="left">
+    <img src="mumbaiphoto1.JPG" alt="Officer taking photo in Mumbai" class="left" loading="lazy">
     
     <!-- Center Column (Horizontal Photo) -->
-    <img src="mumbaiphoto3.JPG" alt="Abby and Sasha taking selfies in Mumbai" class="center">
+    <img src="mumbaiphoto3.JPG" alt="Abby and Sasha taking selfies in Mumbai" class="center" loading="lazy">
     
     <!-- Right Column (Vertical Photo) -->
-    <img src="mumbaiphoto2.JPG" alt="Silhouette of father and kids in Mumbai" class="right">
+    <img src="mumbaiphoto2.JPG" alt="Silhouette of father and kids in Mumbai" class="right" loading="lazy">
 </div>
 
 <!-- Third Gallery Section (Three Vertical Photos Filling Screen) -->
 <div class="gallery full-width-gallery">
-    <img src="IMG_0339.JPG" alt="Kid walking down stairs in Mumbai" class="full">
-    <img src="IMG_0343.JPG" alt="Family in window still in Mumbai" class="full">
-    <img src="IMG_0341.JPG" alt="Father and daughter on steps in Mumbai" class="full">
+    <img src="IMG_0339.JPG" alt="Kid walking down stairs in Mumbai" class="full" loading="lazy">
+    <img src="IMG_0343.JPG" alt="Family in window still in Mumbai" class="full" loading="lazy">
+    <img src="IMG_0341.JPG" alt="Father and daughter on steps in Mumbai" class="full" loading="lazy">
 </div>    
 
 <!-- Footer -->
