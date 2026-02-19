@@ -118,18 +118,15 @@
         
         /* MOBILE STYLES */
         @media (max-width: 768px) {
-            .gallery,
-            .gallery-2x2,
-            .full-width-gallery {
+             /* Stack photo grid into 1 column on mobile */
+            .photo-grid {
                 grid-template-columns: 1fr;
+                width: 95%;
             }
             
-            /* Remove forced heights so images show naturally */
-            .gallery img,
-            .gallery-2x2 img,
-            .full-width-gallery img {
+            /* Remove forced crop */
+            .photo-grid img {
                 height: auto;
-                width: 100%;
                 object-fit: contain;
             }
             .header-links {
