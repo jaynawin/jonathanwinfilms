@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Project</title>
+
     <style>
+        /* GLOBAL FIX */
+        * {
+            box-sizing: border-box;
+        }
+
         html, body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -12,7 +18,6 @@
             text-align: center;
             background-color: #f8f8f8;
             overflow-x: hidden;
-
         }
 
         /* Header */
@@ -33,7 +38,7 @@
         }
 
         header a:hover {
-            color: #A7C7E7; /* Light blue hover effect */
+            color: #A7C7E7;
         }
 
         .header-links {
@@ -46,14 +51,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 60vh;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         iframe {
             width: 80%;
             max-width: 900px;
-            height: 450px;
+            aspect-ratio: 16 / 9;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -64,17 +68,17 @@
             max-width: 800px;
             margin: 0 auto;
             font-size: 18px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Photo Grid */
         .photo-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two columns */
-            grid-template-rows: repeat(3, auto); /* Three rows */
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             padding: 20px;
-            width: 80%;
+            width: 100%;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -95,15 +99,16 @@
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 40px;
         }
 
         footer a {
             text-decoration: none;
             color: white;
             font-weight: bold;
+            margin: 0 10px;
         }
 
         footer a:hover {
@@ -115,20 +120,28 @@
             font-size: 2rem;
             cursor: pointer;
         }
-        
+
         /* MOBILE STYLES */
         @media (max-width: 768px) {
-             /* Stack photo grid into 1 column on mobile */
+
+            /* Stack photo grid into 1 column */
             .photo-grid {
                 grid-template-columns: 1fr;
-                width: 95%;
+                padding: 15px;
             }
-            
+
             /* Remove forced crop */
             .photo-grid img {
                 height: auto;
                 object-fit: contain;
             }
+
+            /* Responsive video */
+            iframe {
+                width: 100%;
+            }
+
+            /* Mobile nav */
             .header-links {
                 display: none;
                 flex-direction: column;
@@ -139,32 +152,23 @@
                 padding: 15px;
                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             }
-        
+
             .header-links a {
                 margin: 10px 0;
             }
-        
+
             .header-links.active {
                 display: flex;
             }
-        
+
             .menu-toggle {
                 display: block;
-            }
-        
-            /* Make images taller so page scrolls */
-            .image-container img {
-                height: 80vh;
-                object-fit: cover;
-            }
-        
-            .overlay-text {
-                font-size: 1.5rem;
             }
         }
 
     </style>
 </head>
+
 <body>
 
 <!-- Header -->
@@ -192,24 +196,27 @@
 <!-- Description -->
 <div class="description">
     <h2>About This Project</h2>
-    <p>The boundaries between old and new blur continuously. Through the lens of architechture, food, clothing, and
-    generations, the nature of time is unfolded and the ever-shifting fabric of the cities of Mumbai and Seoul are revealed.</p>
+    <p>
+        The boundaries between old and new blur continuously. Through the lens of architecture,
+        food, clothing, and generations, the nature of time is unfolded and the ever-shifting
+        fabric of the cities of Mumbai and Seoul are revealed.
+    </p>
 </div>
 
 <!-- Photo Grid -->
 <div class="photo-grid">
-    <img src="ticktock1.jpg" alt="Still from video">
-    <img src="ticktock2.jpg" alt="Still from video">
-    <img src="ticktock3.jpg" alt="Still from video">
-    <img src="ticktock4.jpg" alt="Still from video">
-    <img src="ticktock5.jpg" alt="Still from video">
-    <img src="ticktock6.jpg" alt="Still from video">
-    <img src="ticktock7.jpg" alt="Still from video">
-    <img src="ticktock8.jpg" alt="Still from video">
-    <img src="ticktock9.jpg" alt="Still from video">
-    <img src="ticktock10.jpg" alt="Still from video">
-    <img src="ticktock11.jpg" alt="Still from video">
-    <img src="ticktock12.jpg" alt="Still from video">
+    <img src="ticktock1.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock2.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock3.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock4.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock5.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock6.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock7.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock8.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock9.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock10.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock11.jpg" alt="Still from video" loading="lazy">
+    <img src="ticktock12.jpg" alt="Still from video" loading="lazy">
 </div>
 
 <!-- Footer -->
@@ -228,6 +235,6 @@
         navLinks.classList.toggle("active");
     });
 </script>
-    
+
 </body>
 </html>
