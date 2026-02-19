@@ -69,3 +69,195 @@
         top: 60px;
         right: 20px;
         background: white;
+        width: 200px;
+        padding: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        text-align: left;
+    }
+
+    .mobile-menu a {
+        padding: 10px 0;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+
+    .mobile-menu a:hover {
+        color: #A7C7E7;
+    }
+
+    .mobile-menu.show {
+        display: flex;
+    }
+
+    /* ================= VIDEO ================= */
+
+    .video-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60vh;
+        padding: 20px;
+    }
+
+    .video-container iframe {
+        width: 80%;
+        max-width: 900px;
+        height: 450px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* ================= DESCRIPTION ================= */
+
+    .description {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    /* ================= PHOTO GRID (DESKTOP DEFAULT) ================= */
+
+    .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* ORIGINAL DESKTOP LAYOUT */
+        gap: 20px;
+        padding: 20px;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .photo-grid img {
+        width: 100%;
+        height: 300px; /* ORIGINAL CROPPING FOR DESKTOP */
+        object-fit: cover;
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .photo-grid img:hover {
+        transform: scale(1.02);
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    footer a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        margin: 0 8px;
+    }
+
+    footer a:hover {
+        color: #A7C7E7;
+    }
+
+    /* ================= MOBILE ONLY ================= */
+
+    @media (max-width: 768px) {
+
+        .header-links {
+            display: none;
+        }
+
+        .hamburger {
+            display: block;
+        }
+
+        /* Mobile photo layout change ONLY */
+        .photo-grid {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+        }
+
+        .photo-grid img {
+            height: auto; /* Remove cropping on mobile */
+            object-fit: contain;
+        }
+
+        .video-container {
+            height: auto;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 250px;
+        }
+    }
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="logo">JONATHAN HOANG NGUYEN</a>
+
+    <div class="header-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="videoprojects.html">Videography</a>
+        <a href="mumbai-photo-collection.html">Mumbai Collection</a>
+        <a href="thailand-photo-collection.html">Thailand Collection</a>
+    </div>
+
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="videoprojects.html">Videography</a>
+        <a href="mumbai-photo-collection.html">Mumbai Collection</a>
+        <a href="thailand-photo-collection.html">Thailand Collection</a>
+    </div>
+</header>
+
+<div class="video-container">
+    <iframe src="https://youtube.com/embed/DXhsz2jAyhw?si=zYVkWITXQyh0Hcul"
+        allowfullscreen
+        loading="lazy">
+    </iframe>
+</div>
+
+<div class="description">
+    <h2>About This Project</h2>
+    <p>Two high school friends reconnect four years after their graduation.</p>
+</div>
+
+<div class="photo-grid">
+    <img src="friyield1.jpg" alt="Still from video" loading="lazy">
+    <img src="friyield2.jpg" alt="Still from video" loading="lazy">
+    <img src="friyield3.jpg" alt="Still from video" loading="lazy">
+    <img src="friyield4.jpg" alt="Still from video" loading="lazy">
+    <img src="friyield5.jpg" alt="Still from video" loading="lazy">
+    <img src="friyield6.jpg" alt="Still from video" loading="lazy">
+</div>
+
+<footer>
+    <p>Let's be friends</p>
+    <a href="https://www.instagram.com/jayna__win/" target="_blank">Instagram</a> |
+    <a href="https://www.linkedin.com/in/jonathannguyens/" target="_blank">LinkedIn</a> |
+    <a href="https://www.youtube.com/@jayna_win" target="_blank">YouTube</a>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
