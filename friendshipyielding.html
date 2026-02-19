@@ -177,24 +177,16 @@
         .hamburger {
             display: block;
         }
-
-        /* Mobile photo layout change ONLY */
          /* Stack photo grid into 1 column */
-         .photo-grid {
-             grid-template-columns: 1fr;
-             padding: 15px;
-         }
+        .photo-grid {
+            grid-template-columns: 1fr;
+            padding: 15px;
+        }
 
-         /* Remove forced crop */
-         .photo-grid img {
-             height: auto;
-             object-fit: contain;
-         }
-
-         /* Responsive video */
-         iframe {
-             width: 100%;
-         }
+        .photo-grid img {
+            height: auto; /* Remove cropping on mobile */
+            object-fit: contain;
+        }
 
         .video-container {
             height: auto;
