@@ -47,25 +47,23 @@
             padding: 40px 20px;
             max-width: 700px;
             margin: 0 auto;
-            text-align: center;
+            text-align: left; /* TEXT LEFT ALIGNED */
         }
 
         h1 {
             color: black;
-        }
-
-        h2 {
-            color: #A7C7E7;
+            text-align: center; /* ONLY the title centered */
         }
 
         p {
             color: #333;
-            max-width: 600px;
-            margin: 0 auto 20px auto;
+            margin-bottom: 20px;
             line-height: 1.6;
         }
 
         img {
+            display: block;        /* makes margin auto work */
+            margin: 30px auto 0;   /* centers image */
             border-radius: 10px;
             max-width: 100%;
             height: auto;
@@ -105,6 +103,7 @@
         footer a:hover {
             color: #A7C7E7;
         }
+
         /* Hamburger hidden on desktop */
         .menu-toggle {
             display: none;
@@ -137,6 +136,7 @@
             .menu-toggle {
                 display: block;
             }
+        }
     </style>
 </head>
 <body>
@@ -165,48 +165,46 @@
     <p>You know that feeling when something finally makes sense?</p>
 
     <p>
-    When a conversation reframes everything.<br>
-    When a film lingers with you.<br>
-    When research reveals what was always there–just unseen.
+        When a conversation reframes everything.<br>
+        When a film lingers with you.<br>
+        When research reveals what was always there — just unseen.
     </p>
 
     <p>
-    I’m Jonathan–a filmmaker and researcher drawn to those moments. I’m interested in the space between things: between science and story, between data and lived experience, between who we are and who we’re becoming.
+        I’m Jonathan — a filmmaker and researcher drawn to those moments. I’m interested in the space between things: between science and story, between data and lived experience, between who we are and who we’re becoming.
     </p>
 
     <p>
-    I study Cinema & Media Studies and Biology, which means I spend some days thinking about framing and color palettes, and other days thinking about cells and systems. I’ve researched racial disparities in healthcare, filmed documentaries for nonprofits, and explored memory and identity through experimental storytelling.
+        I study Cinema & Media Studies and Biology, which means I spend some days thinking about framing and color palettes, and other days thinking about cells and systems. I’ve researched racial disparities in healthcare, filmed documentaries for nonprofits, and explored memory and identity through experimental storytelling.
     </p>
 
     <p>
-    As a first-generation low-income student, I’ve learned how to navigate institutions that weren’t built with everyone in mind. Now, I use film, research, and community work to ask: how can we make them better?
+        As a first-generation low-income student, I’ve learned how to navigate institutions that weren’t built with everyone in mind. Now, I use film, research, and community work to ask: how can we make them better?
     </p>
 
     <p>
-    Sometimes that means being behind a camera.<br>
-    Sometimes that means being in a lab.<br>
-    Sometimes that means organizing, mentoring, or simply listening.
+        Sometimes that means being behind a camera.<br>
+        Sometimes that means being in a lab.<br>
+        Sometimes that means organizing, mentoring, or simply listening.
     </p>
 
     <p>
-    I’m here to tell stories that matter–and to make sure they reach the people who need them.
+        I’m here to tell stories that matter — and to make sure they reach the people who need them.
     </p>
 
     <img src="SelfiePhotoOCS.JPG" alt="A picture of me" width="300">
 </div>
 
+<!-- Footer -->
+<footer>
+    <p>Let's be friends</p>
+    <ul>
+        <li><a href="https://www.instagram.com/jayna__win/" target="_blank">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/in/jonathannguyens/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://www.youtube.com/@jayna_win" target="_blank">YouTube</a></li>
+    </ul>
+</footer>
 
-
-    <!-- Footer -->
-    <footer>
-        <p>Let's be friends</p>
-        <ul>
-            <li><a href="https://www.instagram.com/jayna__win/" target="_blank">Instagram</a></li>
-            <li><a href="https://www.linkedin.com/in/jonathannguyens/" target="_blank">LinkedIn</a></li>
-            <li><a href="https://www.youtube.com/@jayna_win" target="_blank">YouTube</a></li>
-        </ul>
-    </footer>
-</body>
 <script>
     const toggle = document.getElementById("menu-toggle");
     const navLinks = document.getElementById("nav-links");
@@ -215,4 +213,6 @@
         navLinks.classList.toggle("active");
     });
 </script>
+
+</body>
 </html>
