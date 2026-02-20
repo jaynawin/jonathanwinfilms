@@ -4,32 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me - My GitHub Website</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         html, body {
-            font-family: Arial, sans-serif;
+            font-family: 'Merriweather', serif;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
+            background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
+            color: #333;
             overflow-x: hidden;
         }
-        
+
         /* Header Styles */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background-color: white;
-            color: black;
+            padding: 15px 30px;
+            background-color: #ffffffcc;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         header a {
             text-decoration: none;
-            color: black;
+            color: #111;
             font-weight: bold;
+            font-size: 16px;
         }
 
         header a:hover {
@@ -38,34 +47,47 @@
 
         .header-links {
             display: flex;
-            gap: 20px;
+            gap: 25px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
         }
 
         /* Content Styling */
         .content {
             flex: 1;
-            padding: 40px 20px;
             max-width: 700px;
-            margin: 0 auto;
-            text-align: left; /* TEXT LEFT ALIGNED */
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 40px 35px;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            text-align: left;
         }
 
         h1 {
-            color: black;
-            text-align: center; /* ONLY the title centered */
+            text-align: center;
+            font-size: 36px;
+            letter-spacing: 1.2px;
+            margin-bottom: 30px;
+            color: #111;
         }
 
         p {
-            color: #333;
+            line-height: 1.8;
             margin-bottom: 20px;
-            line-height: 1.6;
+            font-size: 18px;
         }
 
         img {
-            display: block;        /* makes margin auto work */
-            margin: 30px auto 0;   /* centers image */
-            border-radius: 10px;
-            max-width: 100%;
+            display: block;
+            margin: 40px auto 0;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            max-width: 80%;
             height: auto;
         }
 
@@ -74,7 +96,7 @@
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 20px 10px;
             width: 100%;
             margin-top: auto;
         }
@@ -87,6 +109,7 @@
         footer ul {
             list-style-type: none;
             padding: 0;
+            margin: 10px 0 0 0;
         }
 
         footer ul li {
@@ -104,16 +127,8 @@
             color: #A7C7E7;
         }
 
-        /* Hamburger hidden on desktop */
-        .menu-toggle {
-            display: none;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-        
         /* MOBILE STYLES */
         @media (max-width: 768px) {
-        
             .header-links {
                 display: none;
                 flex-direction: column;
@@ -122,19 +137,33 @@
                 right: 20px;
                 background: white;
                 padding: 15px;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                border-radius: 8px;
             }
-        
+
             .header-links a {
                 margin: 10px 0;
             }
-        
+
             .header-links.active {
                 display: flex;
             }
-        
+
             .menu-toggle {
                 display: block;
+            }
+
+            .content {
+                margin: 30px 20px;
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            p {
+                font-size: 16px;
             }
         }
     </style>
