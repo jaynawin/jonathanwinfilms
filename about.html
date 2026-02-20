@@ -1,307 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Me - My GitHub Website</title>
-<style>
-html, body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - My GitHub Website</title>
+    <style>
+        html, body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+        }
 
-/* Canvas full-screen background */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
+        header a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
 
-/* Header Styles */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.85);
-    color: black;
-}
+        header a:hover {
+            color: #A7C7E7;
+        }
 
-header a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-}
+        .header-links {
+            display: flex;
+            gap: 20px;
+        }
 
-header a:hover {
-    color: #A7C7E7;
-}
+        /* Content Styling */
+        .content {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left; /* TEXT LEFT ALIGNED */
+        }
 
-.header-links {
-    display: flex;
-    gap: 20px;
-}
+        h1 {
+            color: black;
+            text-align: center; /* ONLY the title centered */
+        }
 
-/* Content Styling */
-.content {
-    flex: 1;
-    padding: 40px 20px;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: left;
-    position: relative;
-    z-index: 1;
-}
+        p {
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
 
-h1 {
-    color: black;
-    text-align: center;
-}
+        img {
+            display: block;        /* makes margin auto work */
+            margin: 30px auto 0;   /* centers image */
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+        }
 
-p {
-    color: #333;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
+        /* Footer Styling */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            margin-top: auto;
+        }
 
-img {
-    display: block;        
-    margin: 30px auto 0;   
-    border-radius: 10px;
-    max-width: 100%;
-    height: auto;
-}
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
 
-/* Footer Styling */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-    margin-top: auto;
-}
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-footer p {
-    margin: 0;
-    font-size: 14px;
-}
+        footer ul li {
+            display: inline;
+            margin: 0 15px;
+        }
 
-footer ul {
-    list-style-type: none;
-    padding: 0;
-}
+        footer a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
 
-footer ul li {
-    display: inline;
-    margin: 0 15px;
-}
+        footer a:hover {
+            color: #A7C7E7;
+        }
 
-footer a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-}
-
-footer a:hover {
-    color: #A7C7E7;
-}
-
-/* Hamburger hidden on desktop */
-.menu-toggle {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .header-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background: white;
-        padding: 15px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .header-links a {
-        margin: 10px 0;
-    }
-    .header-links.active {
-        display: flex;
-    }
-    .menu-toggle {
-        display: block;
-    }
-}
-</style>
+        /* Hamburger hidden on desktop */
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        /* MOBILE STYLES */
+        @media (max-width: 768px) {
+        
+            .header-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: white;
+                padding: 15px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+        
+            .header-links a {
+                margin: 10px 0;
+            }
+        
+            .header-links.active {
+                display: flex;
+            }
+        
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- Canvas Background -->
-<canvas id="swirlCanvas"></canvas>
-
 <!-- Header Section -->
 <header>
-<a href="index.html" class="logo">JONATHAN HOANG NGUYEN</a>
+    <a href="index.html" class="logo">JONATHAN HOANG NGUYEN</a>
 
-<div class="menu-toggle" id="menu-toggle">☰</div>
+    <div class="menu-toggle" id="menu-toggle">
+        ☰
+    </div>
 
-<div class="header-links" id="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About Me</a>
-    <a href="videoprojects.html">Videography</a>
-    <a href="mumbai-photo-collection.html">Mumbai Collection</a>
-    <a href="thailand-photo-collection.html">Thailand Collection</a>
-</div>
+    <div class="header-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="videoprojects.html">Videography</a>
+        <a href="mumbai-photo-collection.html">Mumbai Collection</a>
+        <a href="thailand-photo-collection.html">Thailand Collection</a>
+    </div>
 </header>
 
 <!-- Main Content -->
 <div class="content">
-<h1>About Me</h1>
+    <h1>About Me</h1>
 
-<p>You know that feeling when something finally makes sense?</p>
+    <p>You know that feeling when something finally makes sense?</p>
 
-<p>
-    When a film lingers with you.<br>
-    When a conversation reframes everything.<br>
-    When research reveals what was always there–just unseen.
-</p>
+    <p>
+        When a film lingers with you.<br>
+        When a conversation reframes everything.<br>
+        When research reveals what was always there–just unseen.
+    </p>
 
-<p>
-    I’m Jonathan–a filmmaker and researcher drawn to those moments. I’m interested in the space between things: between science and story, between data and lived experience, between who we are and who we’re becoming.
-</p>
+    <p>
+        I’m Jonathan–a filmmaker and researcher drawn to those moments. I’m interested in the space between things: between science and story, between data and lived experience, between who we are and who we’re becoming.
+    </p>
 
-<p>
-    I study Cinema & Media Studies and Biology, which means I spend some days thinking about framing and color palettes, and other days thinking about cells and systems. I’ve researched racial disparities in healthcare, filmed documentaries for nonprofits, and explored memory and identity through experimental storytelling.
-</p>
+    <p>
+        I study Cinema & Media Studies and Biology, which means I spend some days thinking about framing and color palettes, and other days thinking about cells and systems. I’ve researched racial disparities in healthcare, filmed documentaries for nonprofits, and explored memory and identity through experimental storytelling.
+    </p>
 
-<p>
-    As a first-generation low-income student, I’ve learned how to navigate institutions that weren’t built with everyone in mind. Now, I use film, research, and community work to ask: how can we make them better?
-</p>
+    <p>
+        As a first-generation low-income student, I’ve learned how to navigate institutions that weren’t built with everyone in mind. Now, I use film, research, and community work to ask: how can we make them better?
+    </p>
 
-<p>
-    Sometimes that means being in a lab.<br>
-    Sometimes that means being behind a camera.<br>
-    Sometimes that means organizing, mentoring, or simply listening.
-</p>
+    <p>
+        Sometimes that means being in a lab.<br>
+        Sometimes that means being behind a camera.<br>
+        Sometimes that means organizing, mentoring, or simply listening.
+    </p>
 
-<p>
-    I’m here to tell stories that matter–and to make sure they reach the people who need them.
-</p>
+    <p>
+        I’m here to tell stories that matter–and to make sure they reach the people who need them.
+    </p>
 
-<img src="SelfiePhotoOCS.JPG" alt="A picture of me" width="300">
+    <img src="SelfiePhotoOCS.JPG" alt="A picture of me" width="300">
 </div>
 
 <!-- Footer -->
 <footer>
-<p>Let's be friends</p>
-<ul>
-    <li><a href="https://www.instagram.com/jayna__win/" target="_blank">Instagram</a></li>
-    <li><a href="https://www.linkedin.com/in/jonathannguyens/" target="_blank">LinkedIn</a></li>
-    <li><a href="https://www.youtube.com/@jayna_win" target="_blank">YouTube</a></li>
-</ul>
+    <p>Let's be friends</p>
+    <ul>
+        <li><a href="https://www.instagram.com/jayna__win/" target="_blank">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/in/jonathannguyens/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://www.youtube.com/@jayna_win" target="_blank">YouTube</a></li>
+    </ul>
 </footer>
 
 <script>
-// Hamburger menu
-const toggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
-toggle.addEventListener("click", function() {
-    navLinks.classList.toggle("active");
-});
+    const toggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
 
-// Canvas painterly swirl
-const canvas = document.getElementById('swirlCanvas');
-const ctx = canvas.getContext('2d');
-
-let W = canvas.width = window.innerWidth;
-let H = canvas.height = window.innerHeight;
-
-// Off-center "vinyl" pivot (top-right)
-const centerX = W * 0.75;
-const centerY = H * 0.25;
-
-const streaks = [];
-const numStreaks = 80;
-
-// Initialize streaks
-for (let i = 0; i < numStreaks; i++) {
-    streaks.push({
-        angle: Math.random()*2*Math.PI,
-        radius: 50 + Math.random()*400,
-        width: 20 + Math.random()*60,
-        speed: 0.001 + Math.random()*0.002,
-        hue: 200 + Math.random()*50,
-        alpha: 0.15 + Math.random()*0.25
+    toggle.addEventListener("click", function() {
+        navLinks.classList.toggle("active");
     });
-}
-
-// Generate grain texture
-const noiseCanvas = document.createElement('canvas');
-const noiseCtx = noiseCanvas.getContext('2d');
-noiseCanvas.width = 256;
-noiseCanvas.height = 256;
-const noiseData = noiseCtx.createImageData(256,256);
-for (let i=0; i<noiseData.data.length; i+=4){
-    const v = Math.random()*255;
-    noiseData.data[i] = v;
-    noiseData.data[i+1] = v;
-    noiseData.data[i+2] = v;
-    noiseData.data[i+3] = 15; // subtle alpha
-}
-noiseCtx.putImageData(noiseData,0,0);
-
-function drawNoise(){
-    ctx.save();
-    ctx.globalAlpha = 0.08;
-    ctx.drawImage(noiseCanvas,0,0,W,H);
-    ctx.restore();
-}
-
-function draw(){
-    // semi-transparent fill for motion blur trail
-    ctx.fillStyle = 'rgba(255,255,255,0.03)';
-    ctx.fillRect(0,0,W,H);
-
-    // draw swirling streaks
-    for (let s of streaks){
-        const x = centerX + Math.cos(s.angle)*s.radius;
-        const y = centerY + Math.sin(s.angle)*s.radius;
-
-        const gradient = ctx.createRadialGradient(centerX, centerY, 0, x, y, s.width);
-        gradient.addColorStop(0, `hsla(${s.hue}, 80%, 60%, ${s.alpha})`);
-        gradient.addColorStop(1, `hsla(${s.hue}, 80%, 30%, 0)`);
-
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(x,y);
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = s.width;
-        ctx.lineCap = 'round';
-        ctx.stroke();
-
-        s.angle += s.speed;
-    }
-
-    drawNoise();
-
-    requestAnimationFrame(draw);
-}
-
-draw();
-
-window.addEventListener('resize', ()=>{
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-});
 </script>
 
 </body>
