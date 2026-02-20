@@ -117,7 +117,29 @@
         
         /* MOBILE STYLES */
         @media (max-width: 768px) {
-        
+
+            /* Stack photo grid into 1 column on mobile */
+            .photo-grid {
+                grid-template-columns: 1fr;
+                width: 95%;
+            }
+            
+            /* Remove forced crop */
+            .photo-grid img {
+                height: auto;
+                object-fit: contain;
+            }
+
+            .video-container {
+                height: auto;
+            }
+            
+            iframe {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16 / 9;
+            }
+            
             .header-links {
                 display: none;
                 flex-direction: column;
