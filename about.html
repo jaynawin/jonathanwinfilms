@@ -29,7 +29,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.85);
     color: black;
 }
 
@@ -218,52 +218,87 @@ toggle.addEventListener("click", function() {
     navLinks.classList.toggle("active");
 });
 
-// Canvas spinning vinyl-style swirl
+// Canvas painterly swirl
 const canvas = document.getElementById('swirlCanvas');
 const ctx = canvas.getContext('2d');
 
 let W = canvas.width = window.innerWidth;
 let H = canvas.height = window.innerHeight;
 
-// Off-center "vinyl" pivot
-const centerX = W * 0.55;
-const centerY = H * 0.45;
+// Off-center "vinyl" pivot (top-right)
+const centerX = W * 0.75;
+const centerY = H * 0.25;
 
-const numStreaks = 60;
 const streaks = [];
+const numStreaks = 80;
 
+// Initialize streaks
 for (let i = 0; i < numStreaks; i++) {
     streaks.push({
-        angle: Math.random() * 2 * Math.PI,
-        radius: 50 + Math.random() * 250,
-        width: 8 + Math.random() * 20,
-        speed: 0.002 + Math.random()*0.003,
-        color: `hsla(${210 + Math.random()*40}, 80%, ${30 + Math.random()*30}%, 0.4)`
+        angle: Math.random()*2*Math.PI,
+        radius: 50 + Math.random()*400,
+        width: 20 + Math.random()*60,
+        speed: 0.001 + Math.random()*0.002,
+        hue: 200 + Math.random()*50,
+        alpha: 0.15 + Math.random()*0.25
     });
 }
 
-function draw() {
-    ctx.fillStyle = 'rgba(255,255,255,0.05)'; // subtle fade trail
+// Generate grain texture
+const noiseCanvas = document.createElement('canvas');
+const noiseCtx = noiseCanvas.getContext('2d');
+noiseCanvas.width = 256;
+noiseCanvas.height = 256;
+const noiseData = noiseCtx.createImageData(256,256);
+for (let i=0; i<noiseData.data.length; i+=4){
+    const v = Math.random()*255;
+    noiseData.data[i] = v;
+    noiseData.data[i+1] = v;
+    noiseData.data[i+2] = v;
+    noiseData.data[i+3] = 15; // subtle alpha
+}
+noiseCtx.putImageData(noiseData,0,0);
+
+function drawNoise(){
+    ctx.save();
+    ctx.globalAlpha = 0.08;
+    ctx.drawImage(noiseCanvas,0,0,W,H);
+    ctx.restore();
+}
+
+function draw(){
+    // semi-transparent fill for motion blur trail
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
     ctx.fillRect(0,0,W,H);
 
-    for (let s of streaks) {
+    // draw swirling streaks
+    for (let s of streaks){
+        const x = centerX + Math.cos(s.angle)*s.radius;
+        const y = centerY + Math.sin(s.angle)*s.radius;
+
+        const gradient = ctx.createRadialGradient(centerX, centerY, 0, x, y, s.width);
+        gradient.addColorStop(0, `hsla(${s.hue}, 80%, 60%, ${s.alpha})`);
+        gradient.addColorStop(1, `hsla(${s.hue}, 80%, 30%, 0)`);
+
         ctx.beginPath();
-        const x = centerX + Math.cos(s.angle) * s.radius;
-        const y = centerY + Math.sin(s.angle) * s.radius;
         ctx.moveTo(centerX, centerY);
-        ctx.lineTo(x, y);
-        ctx.strokeStyle = s.color;
+        ctx.lineTo(x,y);
+        ctx.strokeStyle = gradient;
         ctx.lineWidth = s.width;
+        ctx.lineCap = 'round';
         ctx.stroke();
+
         s.angle += s.speed;
     }
+
+    drawNoise();
 
     requestAnimationFrame(draw);
 }
 
 draw();
 
-window.addEventListener('resize', () => {
+window.addEventListener('resize', ()=>{
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
 });
