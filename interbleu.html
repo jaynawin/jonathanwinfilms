@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Project</title>
-    <style>
 
-                * {
+    <style>
+        * {
             box-sizing: border-box;
         }
+
         html, body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -36,7 +37,7 @@
         }
 
         header a:hover {
-            color: #A7C7E7; /* Light blue hover effect */
+            color: #A7C7E7;
         }
 
         .header-links {
@@ -44,7 +45,18 @@
             gap: 20px;
         }
 
-         iframe {
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Video Section */
+        .video-container {
+            padding: 40px 20px; /* gives side breathing room on mobile */
+        }
+
+        iframe {
             width: 80%;
             max-width: 900px;
             aspect-ratio: 16 / 9;
@@ -52,9 +64,8 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             display: block;
-            margin: 40px auto;
+            margin: 0 auto;
         }
-
 
         /* Description */
         .description {
@@ -68,8 +79,7 @@
         /* Photo Grid */
         .photo-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two columns */
-            grid-template-rows: repeat(3, auto); /* Three rows */
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             padding: 20px;
             width: 80%;
@@ -95,7 +105,7 @@
             text-align: center;
             padding: 20px;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 40px;
         }
 
         footer a {
@@ -107,73 +117,57 @@
         footer a:hover {
             color: #A7C7E7;
         }
-        .menu-toggle {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
-}
 
-    /* MOBILE STYLES */
-    @media (max-width: 768px) {
-        .photo-grid {
-            grid-template-columns: 1fr;
-            width: 100%;
-            padding: 15px;
+        /* MOBILE STYLES */
+        @media (max-width: 768px) {
+
+            /* Make video responsive but respect container padding */
+            iframe {
+                width: 100%;
+            }
+
+            /* Stack photo grid */
+            .photo-grid {
+                grid-template-columns: 1fr;
+                width: 100%;
+                padding: 15px;
+            }
+
+            .photo-grid img {
+                height: auto;
+                object-fit: contain;
+            }
+
+            /* Mobile nav */
+            .header-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: white;
+                padding: 15px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+            .header-links a {
+                margin: 10px 0;
+            }
+
+            .header-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
         }
-        
-        /* Remove forced crop */
-        .photo-grid img {
-            height: auto;
-            object-fit: contain;
-        }
-        .video-container {
-            height: auto;
-        }
-        
-        iframe {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 16 / 9;
-        }
-        
-        .header-links {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background: white;
-            padding: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-    
-        .header-links a {
-            margin: 10px 0;
-        }
-    
-        .header-links.active {
-            display: flex;
-        }
-    
-        .menu-toggle {
-            display: block;
-        }
-    
-        /* Make images taller so page scrolls */
-        .image-container img {
-            height: 80vh;
-            object-fit: cover;
-        }
-    
-        .overlay-text {
-            font-size: 1.5rem;
-        }
-    }
+
     </style>
 </head>
+
 <body>
 
-<!-- Header -->
 <header>
     <a href="index.html" class="logo">JONATHAN HOANG NGUYEN</a>
 
@@ -190,24 +184,20 @@
     </div>
 </header>
 
-<!-- Video Section -->
 <div class="video-container">
-    <iframe src="https://player.vimeo.com/video/1074155996#t=0s" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://player.vimeo.com/video/1074155996#t=0s" allowfullscreen></iframe>
 </div>
 
-<!-- Description -->
 <div class="description">
     <h2>About This Project</h2>
     <p>Two voices drift across a dinner table where a longing unfolds in the space between them.</p>
 </div>
 
-<!-- Photo Grid -->
 <div class="photo-grid">
     <img src="interbleustill1.jpg" alt="Still from video" loading="lazy">
     <img src="interbleustill.jpg" alt="Still from video" loading="lazy">
 </div>
 
-<!-- Footer -->
 <footer>
     <p>Let's be friends</p>
     <a href="https://www.instagram.com/jayna__win/" target="_blank">Instagram</a> |
@@ -223,6 +213,6 @@
         navLinks.classList.toggle("active");
     });
 </script>
-    
+
 </body>
 </html>
