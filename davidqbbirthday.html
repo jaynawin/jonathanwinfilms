@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Project</title>
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
         html, body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -94,7 +98,7 @@
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             width: 100%;
             margin-top: 20px;
         }
@@ -119,9 +123,10 @@
         @media (max-width: 768px) {
 
             /* Stack photo grid into 1 column on mobile */
-            .photo-grid {
+           .photo-grid {
                 grid-template-columns: 1fr;
-                width: 95%;
+                width: 100%;
+                padding: 15px;
             }
             
             /* Remove forced crop */
