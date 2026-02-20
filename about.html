@@ -218,52 +218,54 @@ toggle.addEventListener("click", function() {
     navLinks.classList.toggle("active");
 });
 
-// Canvas swirl paint effect
+// Canvas spinning vinyl-style swirl
 const canvas = document.getElementById('swirlCanvas');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
-const particles = [];
-const numParticles = 1200; // more = smoother
-for(let i=0;i<numParticles;i++){
-    particles.push({
-        x: Math.random()*canvas.width,
-        y: Math.random()*canvas.height,
-        vx: (Math.random()-0.5)*0.5,
-        vy: (Math.random()-0.5)*0.5,
-        color: `hsla(${200 + Math.random()*60}, 80%, 50%, 0.2)` // shades of blue
+let W = canvas.width = window.innerWidth;
+let H = canvas.height = window.innerHeight;
+
+// Off-center "vinyl" pivot
+const centerX = W * 0.55;
+const centerY = H * 0.45;
+
+const numStreaks = 60;
+const streaks = [];
+
+for (let i = 0; i < numStreaks; i++) {
+    streaks.push({
+        angle: Math.random() * 2 * Math.PI,
+        radius: 50 + Math.random() * 250,
+        width: 8 + Math.random() * 20,
+        speed: 0.002 + Math.random()*0.003,
+        color: `hsla(${210 + Math.random()*40}, 80%, ${30 + Math.random()*30}%, 0.4)`
     });
 }
 
-function drawParticles() {
-    ctx.fillStyle = 'rgba(255,255,255,0.02)'; // faint trail effect
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+function draw() {
+    ctx.fillStyle = 'rgba(255,255,255,0.05)'; // subtle fade trail
+    ctx.fillRect(0,0,W,H);
 
-    for(let p of particles){
+    for (let s of streaks) {
         ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        p.x += p.vx + Math.sin(p.y*0.01)*0.5;
-        p.y += p.vy + Math.cos(p.x*0.01)*0.5;
-        ctx.lineTo(p.x, p.y);
-        ctx.strokeStyle = p.color;
-        ctx.lineWidth = 1.5;
+        const x = centerX + Math.cos(s.angle) * s.radius;
+        const y = centerY + Math.sin(s.angle) * s.radius;
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = s.color;
+        ctx.lineWidth = s.width;
         ctx.stroke();
-
-        // Wrap around edges
-        if(p.x<0) p.x=canvas.width;
-        if(p.x>canvas.width) p.x=0;
-        if(p.y<0) p.y=canvas.height;
-        if(p.y>canvas.height) p.y=0;
+        s.angle += s.speed;
     }
 
-    requestAnimationFrame(drawParticles);
+    requestAnimationFrame(draw);
 }
-drawParticles();
+
+draw();
 
 window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
 });
 </script>
 
