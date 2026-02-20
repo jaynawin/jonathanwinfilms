@@ -12,17 +12,24 @@
             min-height: 100vh;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
             overflow-x: hidden;
         }
-        
+
+        /* Canvas full-screen background */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
         /* Header Styles */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.9); /* semi-transparent to show background */
             color: black;
         }
 
@@ -48,6 +55,8 @@
             max-width: 700px;
             margin: 0 auto;
             text-align: left; /* TEXT LEFT ALIGNED */
+            position: relative;
+            z-index: 1; /* ensure text is above canvas */
         }
 
         h1 {
@@ -62,8 +71,8 @@
         }
 
         img {
-            display: block;        /* makes margin auto work */
-            margin: 30px auto 0;   /* centers image */
+            display: block;        
+            margin: 30px auto 0;   
             border-radius: 10px;
             max-width: 100%;
             height: auto;
@@ -113,7 +122,6 @@
         
         /* MOBILE STYLES */
         @media (max-width: 768px) {
-        
             .header-links {
                 display: none;
                 flex-direction: column;
@@ -140,6 +148,9 @@
     </style>
 </head>
 <body>
+
+<!-- Canvas Background -->
+<canvas id="swirlCanvas"></canvas>
 
 <!-- Header Section -->
 <header>
@@ -206,11 +217,38 @@
 </footer>
 
 <script>
+    // Hamburger menu
     const toggle = document.getElementById("menu-toggle");
     const navLinks = document.getElementById("nav-links");
-
     toggle.addEventListener("click", function() {
         navLinks.classList.toggle("active");
+    });
+
+    // Canvas swirl effect
+    const canvas = document.getElementById('swirlCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let t = 0;
+    function swirl() {
+        t += 0.01;
+        const w = canvas.width;
+        const h = canvas.height;
+        const gradient = ctx.createRadialGradient(w/2, h/2, 50, w/2, h/2, Math.max(w,h)/1.5);
+        gradient.addColorStop(0, `hsl(${(t*60)%360}, 70%, 50%)`);
+        gradient.addColorStop(0.5, `hsl(${(t*60+120)%360}, 70%, 50%)`);
+        gradient.addColorStop(1, `hsl(${(t*60+240)%360}, 70%, 50%)`);
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0,0,w,h);
+        requestAnimationFrame(swirl);
+    }
+    swirl();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     });
 </script>
 
