@@ -116,16 +116,18 @@
         footer p {
             margin: 0;
             font-size: 14px;
+            color: white;
         }
 
         footer ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
+            margin: 10px 0 0 0;
         }
-
+        
         footer ul li {
-            display: inline;
-            margin: 0 15px;
+            display: inline-block;
+            margin: 0 12px;
         }
 
         footer a {
@@ -146,7 +148,22 @@
         
         /* MOBILE STYLES */
         @media (max-width: 768px) {
-        
+
+            /* MOBILE GRID FIX */
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                padding: 10px;
+            }
+            
+            .video-item {
+                max-width: 100%;
+            }
+            
+            .video-title {
+                font-size: 14px;
+            }
+            
             .header-links {
                 display: none;
                 flex-direction: column;
