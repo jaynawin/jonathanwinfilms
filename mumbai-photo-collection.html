@@ -1,184 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mumbai Collection</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mumbai Collection</title>
 
-    <style>
-        html, body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+<style>
+html, body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f8f8f8;
+    overflow-x: hidden;
+}
 
-        /* Header Styles */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: white;
-            color: black;
-        }
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+}
 
-        header a {
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
+header a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
 
-        header a:hover {
-            color: #A7C7E7;
-        }
+header a:hover {
+    color: #A7C7E7;
+}
 
-        .header-links {
-            display: flex;
-            gap: 20px;
-        }
+.header-links {
+    display: flex;
+    gap: 20px;
+}
 
-        .content {
-            flex: 1;
-            text-align: center;
-            padding: 20px;
-        }
+/* Gallery Layout */
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
 
-        /* Gallery Layout */
-        .gallery {
-            display: grid;
-            grid-template-columns: 1fr 3fr 1fr;
-            gap: 20px;
-            padding: 20px;
-        }
+/* Left and Right Columns */
+.gallery img.left,
+.gallery img.right {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
 
-        .gallery img.left,
-        .gallery img.right {
-            width: 100%;
-            height: 460px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s ease-in-out;
-        }
+/* Center Column */
+.gallery img.center {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
 
-        .gallery img.center {
-            width: 100%;
-            height: 460px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s ease-in-out;
-        }
+.gallery img:hover {
+    transform: scale(1.02);
+}
 
-        .gallery img:hover {
-            transform: scale(1.02);
-        }
+/* Full width gallery */
+.full-width-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    width: calc(100vw - 40px);
+    margin: 0 auto;
+}
 
-        .full-width-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 20px;
-            width: calc(100vw - 40px);
-            margin: 0 auto;
-        }
+.full-width-gallery img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
 
-        .full-width-gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease-in-out;
-        }
+.full-width-gallery img:hover {
+    transform: scale(1.02);
+}
 
-        .full-width-gallery img:hover {
-            transform: scale(1.02);
-        }
+/* BODY FLEX FOR FOOTER */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-        /* FOOTER (CLEAN + CONSISTENT) */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            width: 100%;
-            margin-top: auto;
-        }
+.content {
+    flex: 1;
+}
 
-        footer p {
-            margin: 0;
-            font-size: 14px;
-            color: white;
-        }
+/* FOOTER (CLEAN + CONSISTENT) */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: auto;
+}
 
-        footer ul {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0 0 0;
-        }
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
 
-        footer ul li {
-            display: inline-block;
-            margin: 0 12px;
-        }
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
 
-        footer a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
+footer ul li {
+    display: inline;
+    margin: 0 15px;
+}
 
-        footer a:hover {
-            color: #A7C7E7;
-        }
+footer a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
 
-        /* Mobile */
-        @media (max-width: 768px) {
+footer a:hover {
+    color: #A7C7E7;
+}
 
-            .gallery,
-            .full-width-gallery {
-                grid-template-columns: 1fr;
-            }
+/* Hamburger */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
 
-            .gallery img,
-            .full-width-gallery img {
-                height: auto;
-                width: 100%;
-                object-fit: contain;
-            }
+/* MOBILE */
+@media (max-width: 768px) {
 
-            .header-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                right: 20px;
-                background: white;
-                padding: 15px;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            }
+    .gallery,
+    .full-width-gallery {
+        grid-template-columns: 1fr;
+    }
 
-            .header-links a {
-                margin: 10px 0;
-            }
+    .gallery img,
+    .full-width-gallery img {
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+    }
 
-            .header-links.active {
-                display: flex;
-            }
+    .header-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: white;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
 
-            .menu-toggle {
-                display: block;
-                font-size: 2rem;
-                cursor: pointer;
-            }
-        }
-    </style>
+    .header-links a {
+        margin: 10px 0;
+    }
+
+    .header-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+</style>
 </head>
 
 <body>
 
+<!-- Header -->
 <header>
     <a href="index.html" class="logo">JONATHAN HOANG NGUYEN</a>
 
@@ -193,31 +204,29 @@
     </div>
 </header>
 
-<div class="content">
+<!-- Main Content -->
+<h1>Mumbai Collection</h1>
+<p>A collection of my favorite photos from Mumbai.</p>
 
-    <h1>Mumbai Collection</h1>
-    <p>A collection of my favorite photos from Mumbai.</p>
-
-    <div class="gallery">
-        <img src="IMG_0338.JPG" class="left" alt="">
-        <img src="IMG_0340.JPG" class="center" alt="">
-        <img src="IMG_0342.JPG" class="right" alt="">
-    </div>
-
-    <div class="gallery">
-        <img src="mumbaiphoto1.JPG" class="left" alt="">
-        <img src="mumbaiphoto3.JPG" class="center" alt="">
-        <img src="mumbaiphoto2.JPG" class="right" alt="">
-    </div>
-
-    <div class="gallery full-width-gallery">
-        <img src="IMG_0339.JPG" alt="">
-        <img src="IMG_0343.JPG" alt="">
-        <img src="IMG_0341.JPG" alt="">
-    </div>
-
+<div class="gallery">
+    <img src="IMG_0338.JPG" class="left" loading="lazy">
+    <img src="IMG_0340.JPG" class="center" loading="lazy">
+    <img src="IMG_0342.JPG" class="right" loading="lazy">
 </div>
 
+<div class="gallery">
+    <img src="mumbaiphoto1.JPG" class="left" loading="lazy">
+    <img src="mumbaiphoto3.JPG" class="center" loading="lazy">
+    <img src="mumbaiphoto2.JPG" class="right" loading="lazy">
+</div>
+
+<div class="gallery full-width-gallery">
+    <img src="IMG_0339.JPG" loading="lazy">
+    <img src="IMG_0343.JPG" loading="lazy">
+    <img src="IMG_0341.JPG" loading="lazy">
+</div>
+
+<!-- Footer -->
 <footer>
     <p>Let's be friends</p>
     <ul>
@@ -228,12 +237,12 @@
 </footer>
 
 <script>
-    const toggle = document.getElementById("menu-toggle");
-    const navLinks = document.getElementById("nav-links");
+const toggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
 
-    toggle.addEventListener("click", function () {
-        navLinks.classList.toggle("active");
-    });
+toggle.addEventListener("click", function () {
+    navLinks.classList.toggle("active");
+});
 </script>
 
 </body>
