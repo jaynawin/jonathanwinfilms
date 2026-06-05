@@ -221,6 +221,61 @@
                 font-size: 1.5rem;
             }
         }
+        /* Image Popup */
+            .popup {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.8);
+            }
+            
+            .popup-content {
+                background: white;
+                max-width: 900px;
+                width: 90%;
+                margin: 5% auto;
+                padding: 20px;
+                border-radius: 10px;
+                display: flex;
+                gap: 20px;
+                align-items: center;
+            }
+            
+            .popup-content img {
+                width: 50%;
+                max-height: 70vh;
+                object-fit: contain;
+            }
+            
+            .popup-text {
+                width: 50%;
+                text-align: left;
+            }
+            
+            .close {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                color: white;
+                font-size: 35px;
+                cursor: pointer;
+            }
+            
+            /* Mobile */
+            @media (max-width: 768px) {
+                .popup-content {
+                    flex-direction: column;
+                }
+            
+                .popup-content img,
+                .popup-text {
+                    width: 100%;
+                }
+            }
         
     </style>
 </head>
@@ -248,7 +303,8 @@
 <p>A collection of my favorite photos from Thailand.</p>
 
 <div class="gallery">
-    <img src="IMG_0315.JPG" alt="Two motorcycles in Thailand" class="left" loading="lazy">
+    <img src="IMG_0315.JPG" alt="Two motorcycles in Thailand" class="left" loading="lazy" data-title="Bangkok Street Life"
+    data-description="Following a trip to the mountains, I captured these two motorcyclists">
     <img src="IMG_0314.JPG" alt="Rooftop scenery in Thailand" class="center" loading="lazy">
     <img src="IMG_0304.JPG" alt="Pair of bikers in Thailand" class="right" loading="lazy">
 </div>
@@ -273,7 +329,19 @@
     <img src="thailandphoto6.JPG" alt="Man walking through market in Thailand" loading="lazy">
     <img src="thailandphoto7.JPG" alt="Girl standing in corridor in Thailand" loading="lazy">
 </div>
-    
+
+<!-- Image Popup -->
+<div id="imagePopup" class="popup">
+    <span class="close">&times;</span>
+
+    <div class="popup-content">
+        <img id="popupImage" src="" alt="">
+        <div class="popup-text">
+            <h2 id="popupTitle"></h2>
+            <p id="popupDescription"></p>
+        </div>
+    </div>
+</div>
 
 <!-- Footer -->
 <footer>
@@ -291,6 +359,35 @@
 
     toggle.addEventListener("click", function() {
         navLinks.classList.toggle("active");
+    });
+
+    const popup = document.getElementById("imagePopup");
+    const popupImage = document.getElementById("popupImage");
+    const popupTitle = document.getElementById("popupTitle");
+    const popupDescription = document.getElementById("popupDescription");
+    const closeBtn = document.querySelector(".close");
+
+    document.querySelectorAll("img").forEach(img => {
+        img.addEventListener("click", () => {
+
+            // Don't open popup for footer/social icons
+            if (!img.src) return;
+
+            popup.style.display = "block";
+            popupImage.src = img.src;
+            popupTitle.textContent = img.dataset.title || "";
+            popupDescription.textContent = img.dataset.description || "";
+        });
+    });
+
+    closeBtn.addEventListener("click", () => {
+        popup.style.display = "none";
+    });
+
+    popup.addEventListener("click", (e) => {
+        if (e.target === popup) {
+            popup.style.display = "none";
+        }
     });
 </script>
     
