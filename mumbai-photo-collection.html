@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mumbai Collection</title>
+
     <style>
         html, body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
             background-color: #f8f8f8;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* Header Styles */
@@ -31,7 +34,7 @@
         }
 
         header a:hover {
-            color: #A7C7E7; /* Light blue hover effect */
+            color: #A7C7E7;
         }
 
         .header-links {
@@ -39,16 +42,22 @@
             gap: 20px;
         }
 
-        /* Gallery Layout - Three Columns */
+        .content {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Gallery Layout */
         .gallery {
             display: grid;
-            grid-template-columns: 1fr 3fr 1fr; /* One column for left, one for center, one for right */
+            grid-template-columns: 1fr 3fr 1fr;
             gap: 20px;
             padding: 20px;
         }
 
-        /* Left and Right Column (Vertical Photos) */
-        .gallery img.left, .gallery img.right {
+        .gallery img.left,
+        .gallery img.right {
             width: 100%;
             height: 460px;
             object-fit: cover;
@@ -56,69 +65,63 @@
             transition: transform 0.3s ease-in-out;
         }
 
-        /* Center Column (Horizontal Photo) */
         .gallery img.center {
             width: 100%;
             height: 460px;
-            object-fit: cover; /* Ensures the image fills the area without distortion */
+            object-fit: cover;
             border-radius: 8px;
             transition: transform 0.3s ease-in-out;
         }
 
         .gallery img:hover {
             transform: scale(1.02);
-        }    
+        }
 
-        /* Updated Full-width Three-column Layout */
         .full-width-gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Three equal columns */
-            gap: 20px; /* Adds spacing between images */
-            padding: 20px; /* Matches spacing of other galleries */
-            width: calc(100vw - 40px); /* Adjusts for padding */
-            margin: 0 auto; /* Centers the gallery */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            width: calc(100vw - 40px);
+            margin: 0 auto;
         }
-        
-        /* Styling for full-width images */
+
         .full-width-gallery img {
             width: 100%;
-            height: auto; 
-            object-fit: cover; /* Ensures images fill the area without distortion */
-            border-radius: 8px; /* Matches rounded corners */
-            transition: transform 0.3s ease-in-out; /* Adds hover effect */
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
         }
-        
+
         .full-width-gallery img:hover {
-            transform: scale(1.02); /* Same subtle zoom effect */
+            transform: scale(1.02);
         }
-    
-        
-        /* Footer Styles */
+
+        /* FOOTER (CLEAN + CONSISTENT) */
         footer {
             background-color: #333;
             color: white;
             text-align: center;
             padding: 10px;
-            position: relative;
-            left: 0;
-            bottom: 0;
             width: 100%;
-            margin-top: 20px; /* Adds spacing between content and footer */
+            margin-top: auto;
         }
 
         footer p {
             margin: 0;
             font-size: 14px;
+            color: white;
         }
 
         footer ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
+            margin: 10px 0 0 0;
         }
 
         footer ul li {
-            display: inline;
-            margin: 0 15px;
+            display: inline-block;
+            margin: 0 12px;
         }
 
         footer a {
@@ -130,41 +133,22 @@
         footer a:hover {
             color: #A7C7E7;
         }
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Ensures the body takes full height of the viewport */
-        }
 
-        .content {
-            flex: 1; /* Pushes the footer to the bottom */
-        }
-        
-        .menu-toggle {
-            display: none;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-        
-        /* MOBILE STYLES */
+        /* Mobile */
         @media (max-width: 768px) {
 
-            /* Stack all galleries into one column */
             .gallery,
-            .gallery-2x2,
             .full-width-gallery {
                 grid-template-columns: 1fr;
             }
-            
-            /* Remove forced heights so images show naturally */
+
             .gallery img,
-            .gallery-2x2 img,
             .full-width-gallery img {
                 height: auto;
                 width: 100%;
                 object-fit: contain;
             }
-        
+
             .header-links {
                 display: none;
                 flex-direction: column;
@@ -175,40 +159,30 @@
                 padding: 15px;
                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             }
-        
+
             .header-links a {
                 margin: 10px 0;
             }
-        
+
             .header-links.active {
                 display: flex;
             }
-        
+
             .menu-toggle {
                 display: block;
-            }
-        
-            /* Make images taller so page scrolls */
-            .image-container img {
-                height: 80vh;
-                object-fit: cover;
-            }
-        
-            .overlay-text {
-                font-size: 1.5rem;
+                font-size: 2rem;
+                cursor: pointer;
             }
         }
     </style>
 </head>
+
 <body>
 
-<!-- Header Section -->
 <header>
     <a href="index.html" class="logo">JONATHAN HOANG NGUYEN</a>
 
-    <div class="menu-toggle" id="menu-toggle">
-        ☰
-    </div>
+    <div class="menu-toggle" id="menu-toggle">☰</div>
 
     <div class="header-links" id="nav-links">
         <a href="index.html">Home</a>
@@ -219,40 +193,31 @@
     </div>
 </header>
 
-<!-- Main Content -->
-<h1>Mumbai Collection</h1>
-<p>A collection of my favorite photos from Mumbai.</p>
+<div class="content">
 
-<div class="gallery">
-    <!-- Left Column (Vertical Photo) -->
-    <img src="IMG_0338.JPG" alt="Mom walking with kid in Mumbai" class="left" loading="lazy">
-    
-    <!-- Center Column (Horizontal Photo) -->
-    <img src="IMG_0340.JPG" alt="Kid with kite in Mumbai" class="center" loading="lazy">
-    
-    <!-- Right Column (Vertical Photo) -->
-    <img src="IMG_0342.JPG" alt="Mom holding kid in busy street in Mumbai" class="right" loading="lazy">
+    <h1>Mumbai Collection</h1>
+    <p>A collection of my favorite photos from Mumbai.</p>
+
+    <div class="gallery">
+        <img src="IMG_0338.JPG" class="left" alt="">
+        <img src="IMG_0340.JPG" class="center" alt="">
+        <img src="IMG_0342.JPG" class="right" alt="">
+    </div>
+
+    <div class="gallery">
+        <img src="mumbaiphoto1.JPG" class="left" alt="">
+        <img src="mumbaiphoto3.JPG" class="center" alt="">
+        <img src="mumbaiphoto2.JPG" class="right" alt="">
+    </div>
+
+    <div class="gallery full-width-gallery">
+        <img src="IMG_0339.JPG" alt="">
+        <img src="IMG_0343.JPG" alt="">
+        <img src="IMG_0341.JPG" alt="">
+    </div>
+
 </div>
 
-<div class="gallery">
-    <!-- Left Column (Vertical Photo) -->
-    <img src="mumbaiphoto1.JPG" alt="Officer taking photo in Mumbai" class="left" loading="lazy">
-    
-    <!-- Center Column (Horizontal Photo) -->
-    <img src="mumbaiphoto3.JPG" alt="Abby and Sasha taking selfies in Mumbai" class="center" loading="lazy">
-    
-    <!-- Right Column (Vertical Photo) -->
-    <img src="mumbaiphoto2.JPG" alt="Silhouette of father and kids in Mumbai" class="right" loading="lazy">
-</div>
-
-<!-- Third Gallery Section (Three Vertical Photos Filling Screen) -->
-<div class="gallery full-width-gallery">
-    <img src="IMG_0339.JPG" alt="Kid walking down stairs in Mumbai" class="full" loading="lazy">
-    <img src="IMG_0343.JPG" alt="Family in window still in Mumbai" class="full" loading="lazy">
-    <img src="IMG_0341.JPG" alt="Father and daughter on steps in Mumbai" class="full" loading="lazy">
-</div>    
-
-<!-- Footer -->
 <footer>
     <p>Let's be friends</p>
     <ul>
@@ -266,10 +231,10 @@
     const toggle = document.getElementById("menu-toggle");
     const navLinks = document.getElementById("nav-links");
 
-    toggle.addEventListener("click", function() {
+    toggle.addEventListener("click", function () {
         navLinks.classList.toggle("active");
     });
 </script>
-    
+
 </body>
 </html>
